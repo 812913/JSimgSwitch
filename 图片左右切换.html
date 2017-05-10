@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片循环切换和顺序切换</title>
+    <style>
+        #choose{
+            margin-top:50px;
+            text-align: center;
+            height:50px;
+        }
+        #choose p{
+            margin:0;
+        }
+
+        /*#choose form{*/
+            /*width:0;*/
+            /*height:0;*/
+            /*overflow: hidden;*/
+        /*}*/
+
+        #container{
+            position:relative;
+            width: 400px;
+            height: 400px;
+            border:1px solid #cccccc;
+            margin:40px auto 0;
+        }
+        #container a{
+            position: absolute;
+            width:40px;
+            height:40px;
+            background-color:#000;
+            border:5px solid #ffffff;
+            top:175px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            line-height:40px;
+            font-weight:bold;
+            opacity:0.8;
+
+        }
+        #container a:hover{
+            opacity: 0.9;
+        }
+        #prev{
+            left:10px;
+        }
+        #next{
+            right:10px;
+        }
+        #text,#span1{
+            position: absolute;
+            left:0;
+            width:400px;
+            height:30px;
+            line-height:30px;
+            text-align: center;
+            color: #ffffff;
+            background-color:#000;
+            opacity:0.9;
+        }
+        #text{
+            bottom:0;
+            margin:0;
+        }
+        #span1{
+            top:0;
+        }
+        #img1{
+            width:400px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="choose">
+
+        <button id="btn1">循环切换</button>
+        <button id="btn2">顺序切换</button>
+        <p id="tip">默认是循环切换</p>
+
+        <!--<form>-->
+            <!--<input id="rd1" type="radio" name="choose"/>-->
+            <!--<input id="rd2" type="radio" name="choose"/>-->
+        <!--</form>-->
+
+    </div>
+    <div id="container">
+        <a  id="prev" href="javascript:;"><</a>
+        <a  id="next" href="javascript:;">></a>
+        <p id="text">这是第一张图片</p>
+        <span id="span1">数量正在计算中...</span>
+        <img id="img1" src="img/qh1.jpeg"/>
+    </div>
+<!--方法一（复杂）：通过控制radio的值为true或者false -->
+    <!--<script>-->
+        <!--var oBtn1=document.getElementById('btn1');-->
+        <!--var oBtn2=document.getElementById('btn2');-->
+        <!--var oTip=document.getElementById('tip');-->
+        <!--var oRd1=document.getElementById('rd1');-->
+        <!--var oRd2=document.getElementById('rd2');-->
+        <!--oBtn1.onclick=function(){-->
+            <!--oRd1.checked='checked';-->
+            <!--oTip.innerHTML="从第一张到最后一张后变为第一张继续切换"-->
+        <!--};-->
+        <!--oBtn2.onclick=function(){-->
+            <!--oRd2.checked=true;-->
+            <!--oTip.innerHTML="从第一张到最后一张后不再继续切换"-->
+        <!--};-->
+        <!--var oPrev=document.getElementById('prev');-->
+        <!--var oNext=document.getElementById('next');-->
+        <!--var oText=document.getElementById('text');-->
+        <!--var oSpan1=document.getElementById('span1');-->
+        <!--var oImg=document.getElementById('img1');-->
+        <!--var arrUrl=['img/qh1.jpeg','img/qh2.jpeg','img/qh3.jpeg','img/qh4.jpeg'];-->
+        <!--var arrText=['图片一','图片二','图片三','图片四'];-->
+
+        <!--var num=0;-->
+        <!--//初始化-->
+       <!--function fnTab() {-->
+           <!--oSpan1.innerHTML=num+1+'/'+arrText.length;-->
+           <!--oImg.src=arrUrl[num];-->
+           <!--oText.innerHTML=arrText[num];-->
+       <!--}-->
+       <!--fnTab();-->
+        <!--oPrev.onclick=function(){-->
+                    <!--num&#45;&#45;;-->
+                    <!--if(num==-1 && (oRd1.checked||(oRd1.checked==false&&oRd2.checked==false))){-->
+                        <!--num=arrText.length-1;-->
+                    <!--}-->
+                    <!--if(num==-1 &&oRd2.checked){-->
+                        <!--alert('已经是第一张了');-->
+                        <!--num=0;-->
+                    <!--}-->
+                   <!--fnTab();-->
+                <!--};-->
+        <!--oNext.onclick=function(){-->
+            <!--num++;-->
+            <!--if(num==arrText.length &&(oRd1.checked||(oRd1.checked==false&&oRd2.checked==false))){-->
+              <!--num=0;-->
+            <!--}-->
+            <!--if(num==arrText.length &&oRd2.checked){-->
+                <!--alert('已经是最后一张了');-->
+                <!--num=arrText.length-1;-->
+            <!--}-->
+          <!--fnTab();-->
+        <!--};-->
+    <!--</script>-->
+
+    <!--方法二（简单）：通过设置flag的值为true 或者 false的方法-->
+    <script>
+        var oBtn1=document.getElementById('btn1');
+        var oBtn2=document.getElementById('btn2');
+        var oTip=document.getElementById('tip');
+        var oRd1=document.getElementById('rd1');
+        var oRd2=document.getElementById('rd2');
+
+        var flag=true;
+
+        oBtn1.onclick=function(){
+           flag=true;
+            oTip.innerHTML="从第一张到最后一张后变为第一张继续切换"
+        };
+        oBtn2.onclick=function(){
+          flag=false;
+            oTip.innerHTML="从第一张到最后一张后不再继续切换"
+        };
+        var oPrev=document.getElementById('prev');
+        var oNext=document.getElementById('next');
+        var oText=document.getElementById('text');
+        var oSpan1=document.getElementById('span1');
+        var oImg=document.getElementById('img1');
+        var arrUrl=['img/qh1.jpeg','img/qh2.jpeg','img/qh3.jpeg','img/qh4.jpeg'];
+        var arrText=['图片一','图片二','图片三','图片四'];
+
+        var num=0;
+        //初始化
+        function fnTab() {
+            oSpan1.innerHTML=num+1+'/'+arrText.length;
+            oImg.src=arrUrl[num];
+            oText.innerHTML=arrText[num];
+        }
+        fnTab();
+        oPrev.onclick=function(){
+            num--;
+            if(num==-1&&flag==true){
+                num=arrText.length-1;
+            }
+            if(num==-1&&flag==false){
+                alert('已经是第一张了');
+                num=0;
+            }
+            fnTab();
+        };
+        oNext.onclick=function(){
+            num++;
+            if(num==arrText.length&&flag==true){
+                num=0;
+            }
+            if(num==arrText.length &&flag==false){
+                alert('已经是最后一张了');
+                num=arrText.length-1;
+            }
+            fnTab();
+        };
+    </script>
+
+</body>
+</html>

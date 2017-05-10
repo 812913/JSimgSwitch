@@ -1,0 +1,51 @@
+什么是属性操作？<br/>
+html属性操作：<br/>
+属性名：属性值<br/>
+操作：
+1、读操作：获取、操作&nbsp;&nbsp;&nbsp;元素.属性名
+2、写操作：替换或修改&nbsp;&nbsp;&nbsp;元素.属性名=属性值<br/>     
+
+innerHTML:<br/>
+op.innerHTML:获取元素内的内容<br/>
+op.innerHTML=值：修改元素的内容
+
+a=a+b
+a+=b
+
+属性操作读写操作注意事项：
+js不允许'-':font-size:fontSize
+
+关键字、保留字不一样<br/>
+关键字：var function;<br/>
+保留字：可能以后js发展要用的
+
+所有的相对路径都别拿来做判断，有很多兼容性的问题：<br/>
+什么用的相对路径呢？<br/>
+如：img.src、href="1.css"、color值也不要拿来做判断（不知道浏览器返回的颜色格式）、innerHTML的值也不能拿来做判断
+输出 图片.src 是一长串字符（图片的绝对路径）<br/>
+
+改变一个form表单的类型：
+form表单.type='button' IE6/IE7/IE8不支持，会报错<br/>
+可以转换思路，让一个先隐藏，点击时显示
+
+改变一个div的浮动：<br/>
+oDiv.style.float="left"有些浏览器不支持<br/>
+IE（styleFloat）、非IE(cssFloat):<br/>
+稳妥：方法一
+oDiv.style.styleFloat='';
+oDiv.style.cssFloat='';<br/>
+方法二：oDiv.className='float'
+ .float{float:left;}
+
+技术上：必须做到掌握兼容性问题的解决方案<br/>
+需求上:提供最准确的解决方案
+
+js中允许把'.'换成'[]'
+
+数组：<br/>
+var arr=['1',2,'123'];<br/>
+arr.length;<br/>
+arr.push('');//在数组的最后添加一个元素；<br/>
+alert(arr);//弹出数组的全部元素
+
+
